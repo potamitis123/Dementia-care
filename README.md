@@ -1,2 +1,21 @@
 # Dementia-care
 Code for paper:Potamitis, I. Affordable Audio Hardware and Artificial Intelligence Can Transform the Dementia Care Pipeline. Algorithms 2025, 18, 787. https://doi.org/10.3390/a18120787
+
+One needs to install the libraries of each script
+
+VAD.py: Voice activity detection. Outputs a wav file and a plot
+
+ESR: Emotion Speech Recognition of a folder of recordings. Recs should 16kHz. It is based on uperb/hubert-large-superb-er
+
+diarization, diarization_v2. Expects a trining folder with subfolders with names A, B, C, D, E, F, A+B, A+C. A to F are the speakers. Each single letter folder has recordings from a single speaker. The name of the folder denotes the speaker. A+B means that folder contains recordings each have a conversation with speaker A and B only. It expects an output folder with recordings.
+
+eval_diarization: It takes a single csv as input and outputs evaluation metrics
+
+fall_detection.py: Finds if there is a fall of an elder in an .mp4 file. You should install Qwen/Qwen3-VL-2B-Instruct. Example: python fall_detection.py -i female_fall.mp4
+
+RAG. A self-sufficient fold implementing RAG in the context of elders with dementia nursing. Usage: python RAG_suggestion.py --json sound_events_single_day.json --pdf Caring_dementia_guide.pdf
+json sound_events_single_day.json Audio events in a day as classified by an AST general audio classifier
+Caring_dementia_guide.pdf This is the reliable corpus wrt to caregiving for elders with dementia. Replace with a larger, more sophisticated book in pdf form
+RAG_suggestion.py requires an OpenAIs API key
+
+main_ESP32.zip: C code for esp32 audio node
